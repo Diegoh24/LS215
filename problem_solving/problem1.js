@@ -48,10 +48,10 @@ regex:
 */
 
 function cleanNumber(number) {
-  const TenOrElevenDigits = /^([-(). ]*\d[-(). ]*){10,11}$/
+  const TenOrElevenDigits = /^([\D]*\d[\D]*){10,11}$/
+
   number = TenOrElevenDigits.test(number) ? number : '';
   number = number.replace(/[^\d]/g, '');
-
   if (number.length === 11) {
     number = number[0] !== '1' ? '0' : number.slice(1);
   } else if (!number) {
@@ -62,6 +62,7 @@ function cleanNumber(number) {
 }
 
 
+console.log(cleanNumber('a12431dsa67893'));
 console.log(cleanNumber('(842)-421-9090'));
 console.log(cleanNumber('(21)-512-231'));
 console.log(cleanNumber('1 (843)-521-3413'));
