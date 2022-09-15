@@ -55,8 +55,8 @@ function compareVersions(version1, version2) {
   if (!/^\d+([.]\d+)*$/.test(version1) || !/^\d+([.]\d+)*$/.test(version2)) return null;
 
   [version1, version2] = [version1.split('.'), version2.split('.')]
-  version1 = relevantVersionNumbers(version1).map(str => Number(str));
-  version2 = relevantVersionNumbers(version2).map(str => Number(str));
+  version1 = relevantVersionNumbers(version1).map(Number);
+  version2 = relevantVersionNumbers(version2).map(Number);
 
   for (let index = 0; index < version1.length; index += 1) {
     let currentVersion2Digit = version2[index] || 0;
