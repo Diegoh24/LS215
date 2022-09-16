@@ -123,7 +123,7 @@ function getLetterPositions(start, end, pattern) {
 }
 
 function makeDots(count) {
-  return '.'.repeat(count)
+  return '.'.repeat(count);
 }
 
 

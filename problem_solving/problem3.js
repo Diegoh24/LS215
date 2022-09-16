@@ -51,7 +51,7 @@ return false
 */
 
 function isBlockWord(string) {
-  let usedCharCodes = []
+  let usedCharCodes = [];
   let chars = string.toLowerCase().match(/[a-z]/g).sort();
 
   for (let index = 0; index < chars.length; index += 1) {
@@ -60,7 +60,7 @@ function isBlockWord(string) {
     usedCharCodes.push(charCode, charCode + 13);
   }
 
-  return true
+  return true;
 }
 
 console.log(isBlockWord('20132112...  . .BAT 213CH'));

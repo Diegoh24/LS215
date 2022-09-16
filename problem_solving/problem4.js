@@ -108,8 +108,8 @@ function rangeNumbers(range) {
   let rangeDigits = range.split(',').map(d => separators.test(d) ? d : Number(d));
 
   return rangeDigits.reduce((digits, digit) => {
-    digit = separators.test(digit) ? rangeToDigits(digits, digit) : digit
-    let previousDigit = digits[digits.length - 1] || 0
+    digit = separators.test(digit) ? rangeToDigits(digits, digit) : digit;
+    let previousDigit = digits[digits.length - 1] || 0;
 
     if (Number(digit) === digit && previousDigit > digit) {
       digit = nextDigit(previousDigit, digit);
@@ -131,11 +131,11 @@ function nextDigit(start, end) {
 function rangeToDigits(digits, range) {
   range = range.split(separators);
   let lastDigit = digits[digits.length - 1];
-  if (lastDigit) range[0] = nextDigit(lastDigit, range[0])
+  if (lastDigit) range[0] = nextDigit(lastDigit, range[0]);
 
   return range.reduce((digits, currentBoundary, index, range) => {
     if (index !== range.length - 1) {
-      let nextBoundary = nextDigit(currentBoundary, range[index + 1])
+      let nextBoundary = nextDigit(currentBoundary, range[index + 1]);
 
       for (let number = Number(currentBoundary); number <= nextBoundary; number += 1) {
         digits.push(number);
