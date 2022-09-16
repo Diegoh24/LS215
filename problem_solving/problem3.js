@@ -42,6 +42,7 @@ iterate over each character in the string
 - obtain the charCode of the current character
 - return false if the array contains the charCode of the current character
 - add to the array usedCharCode the current charCode and the currentCharCode, ensure that the characters are in order
+
 -
 return false
 
@@ -55,8 +56,6 @@ function isBlockWord(string) {
 
   for (let index = 0; index < chars.length; index += 1) {
     let charCode = chars[index].charCodeAt();
-    //console.log(chars[index], charCode, usedCharCodes)
-
     if (usedCharCodes.includes(charCode)) return false;
     usedCharCodes.push(charCode, charCode + 13);
   }
