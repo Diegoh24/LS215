@@ -45,9 +45,6 @@ iterate over each character in the string
 
 -
 return false
-
-
-
 */
 
 function isBlockWord(string) {
@@ -63,7 +60,16 @@ function isBlockWord(string) {
   return true;
 }
 
-console.log(isBlockWord('20132112...  . .BAT 213CH'));
-console.log(isBlockWord('BATCH'));      // true
-console.log(isBlockWord('BUTCH'));      // false
-console.log(isBlockWord('jest'));       // true
+// console.log(isBlockWord('20132112...  . .BAT 213CH'));
+// console.log(isBlockWord('BATCH'));      // true
+// console.log(isBlockWord('BUTCH'));      // false
+// console.log(isBlockWord('jest'));       // true
+
+isBlockWord('BATCH');      // true
+isBlockWord('BUTCH');      // false
+isBlockWord('jest');       // true
+isBlockWord('floW');       // true
+isBlockWord('APPLE');      // false
+isBlockWord('apple');      // false
+isBlockWord('apPLE');      // false
+isBlockWord('Box');        // false

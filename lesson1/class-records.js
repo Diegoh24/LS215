@@ -130,6 +130,7 @@ function getAverageGrades(scores) {
   let students = Object.entries(scores);
   let studentScores = students.map(student => student[1].scores);
 
+  console.log(scores, students, studentScores);
   return studentScores.map(grades => {
     let examsAvg = grades.exams.reduce((sum, grade) => sum + grade);
     examsAvg /= grades.exams.length;
@@ -143,22 +144,15 @@ function getAverageGrades(scores) {
 }
 
 function getExamGrades(scores) {
-  let examGrades = Object.entries(scores).map(student => {
-    student[1].scores.exams
-    });
+  let ExamGrades = Object.entries(scores).map(stu => stu[1].scores.exams);
+  let exams = ExamGrades[0].map((_, idx) => ExamGrades.map(exam => exam[idx]));
 
-  let examCount = examGrades[0].length;
-  let examStats = []
-
-  for (let exam = 0; exam < examCount; exam += 1) {
-    let average = examGrades.reduce((sum, scores) => sum + scores[exam], 0) / examGrades.length;
-    let minimum = examGrades.reduce((min, scores) => min <= scores[exam] ? min : scores[exam]);
-    let maximum = examGrades.reduce((max, scores) => max >= scores[exam] ? max : scores[exam]);
-
-    examStats.push({average, minimum, maximum});
-  }
-
-  return examStats
+  return exams.map(exam => {
+    let average = exam.reduce((sum, score) => sum + score) / exam.length;
+    let minimum = exam.reduce((min, score) => min < score ? min : score);
+    let maximum = exam.reduce((max, score) => max > score ? max : score);
+    return {average, minimum, maximum}
+  });
 }
 
 function generateClassRecordSummary(scores) {
@@ -185,3 +179,25 @@ console.log(generateClassRecordSummary(studentScores));
   ],
 }
 */
+console.log(undefined);
+
+function isAllUnique(string) {
+  console.log(string.split('').every((char, idx, chars) =>  {
+    return chars.lastIndexOf(char) === idx && char !== ' ';
+  }));
+}
+
+isAllUnique('The quick brown fox jumped over a lazy dog');  // false
+isAllUnique('123,456,789');                                 // false
+isAllUnique('The big apple');                               // false
+isAllUnique('The big apPlE');                               // false
+isAllUnique('!@#$%^&*()');                                  // true
+isAllUnique('abcdefghijklmnopqrstuvwxyz');
+
+let text = 'The quick brOwn foX jumps oVEr the lazy dog.';
+
+function capitalize(text) {
+  console.log(text.replace(/\b[a-z]/gi, char => char.toUpperCase()));
+}
+
+capitalize(text);

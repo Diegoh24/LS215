@@ -96,22 +96,49 @@ from the start, until the number is equal to the end Number, while its less than
 - perform the operation, num + pattern, add that to an array.
 
 return the array
+
+.1
+..2
+...3
+
+0 + 3
 */
-function railFenceCipher(message) {
-  const size = message.length
-  const TOP = getLetterPositions(0, size, 4);
-  const MIDDLE = getLetterPositions(1, size, 2);
-  const BOTTOM = getLetterPositions(2, size, 4);
+function railFenceCipher(message, rows) {
+ const size = message.length;
 
-  let chars = message.toUpperCase().replace(/[^A-Z]/g, '').split('');
-  let topLetters = chars.filter((char, index) => TOP.includes(index)).join(makeDots(3));
-  let middleLetters = chars.filter((char, index) => MIDDLE.includes(index)).join(makeDots(1));
-  let bottomLetters = chars.filter((char, index) => BOTTOM.includes(index)).join(makeDots(3));
-
-  console.log(topLetters);
-  console.log(makeDots(1) + middleLetters + makeDots(1));
-  console.log(makeDots(2) + bottomLetters + makeDots(2));
+ let chars = message.toUpperCase().replace(/[^A-Z]/g, '').split('');
+ console.log(topRow(chars, rows));
+ console.log(bottomRow(chars, rows));
 }
+
+function topRow(letters, maxRow) {
+ let indexes = getLetterPositions(0, letters.length - 1, maxRow + 1)
+ return letters.filter((char, index) => indexes.includes(index)).join(makeDots(maxRow));
+}
+
+function bottomRow(letters, maxRow) {
+ let indexes = getLetterPositions(maxRow - 1, letters.length - 1, maxRow + 1)
+ let row = letters.filter((char, index) => indexes.includes(index)).join(makeDots(maxRow));
+ return makeDots(maxRow - 1) + row + makeDots(maxRow - 1);
+}
+
+console.log(railFenceCipher('WECRLTEERDSOEEFEAOCAIVDEN', 5));
+
+// function railFenceCipher(message) {
+//   const size = message.length
+//   const TOP = getLetterPositions(0, size, 4);
+//   const MIDDLE = getLetterPositions(1, size, 2);
+//   const BOTTOM = getLetterPositions(2, size, 4);
+
+//   let chars = message.toUpperCase().replace(/[^A-Z]/g, '').split('');
+//   let topLetters = chars.filter((char, index) => TOP.includes(index)).join(makeDots(3));
+//   let middleLetters = chars.filter((char, index) => MIDDLE.includes(index)).join(makeDots(1));
+//   let bottomLetters = chars.filter((char, index) => BOTTOM.includes(index)).join(makeDots(3));
+
+//   console.log(topLetters);
+//   console.log(makeDots(1) + middleLetters + makeDots(1));
+//   console.log(makeDots(2) + bottomLetters + makeDots(2));
+// }
 
 function getLetterPositions(start, end, pattern) {
  let positions = []
@@ -127,6 +154,6 @@ function makeDots(count) {
 }
 
 
-console.log(railFenceCipher('Can you read this'));
+// console.log(railFenceCipher('Can you read this'), 3);
 
-console.log(railFenceCipher('WECRLTEERDSOEEFEAOCAIVDEN'));
+// console.log(railFenceCipher('WECRLTEERDSOEEFEAOCAIVDEN'), 5);
